@@ -1,0 +1,25 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime
+
+from scripts.transform_sales import transform_sales_data
+from scripts.load_sales_db import load_sales_to_db
+
+with DAG(
+    dag_id="etl_sales_pipeline",
+    start_date=datetime(2024,1,1),
+    schedule_interval="@daily",
+    catchup=False
+) as dag:
+
+    transform_sales = PythonOperator(
+        task_id="transform_sales",
+        python_callable=transform_sales_data
+    )
+
+    load_sales = PythonOperator(
+        task_id="load_sales_db",
+        python_callable=load_sales_to_db
+    )
+
+    transform_sales >> load_sales

@@ -1,0 +1,16 @@
+from airflow import DAG
+from airflow.sensors.external_task import ExternalTaskSensor
+from datetime import datetime
+
+with DAG(
+    dag_id="reporting_pipeline",
+    start_date=datetime(2024,1,1),
+    schedule_interval="@daily",
+    catchup=False
+) as dag:
+
+    wait_for_sales = ExternalTaskSensor(
+        task_id="wait_for_sales_dag",
+        external_dag_id="etl_sales_pipeline",
+        external_task_id="load_sales_db"
+    )
