@@ -1,0 +1,4 @@
+from config.constants import ORDERS_TABLE
+
+def transform_orders_data():
+    print(f"Transforming data for table {ORDERS_TABLE}")

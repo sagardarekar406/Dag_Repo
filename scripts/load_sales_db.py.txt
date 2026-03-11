@@ -1,0 +1,5 @@
+from utils.db_utils import connect_db
+
+def load_sales_to_db():
+    conn = connect_db()
+    print("Loading sales data into database")
