@@ -1,0 +1,4 @@
+from config.db_config import DB_HOST
+
+def connect_db():
+    print(f"Connecting to database at {DB_HOST}")
