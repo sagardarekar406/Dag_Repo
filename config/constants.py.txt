@@ -1,0 +1,3 @@
+SALES_TABLE = "sales_data"
+ORDERS_TABLE = "orders_data"
+CUSTOMER_API = "https://api.company.com/customers"
